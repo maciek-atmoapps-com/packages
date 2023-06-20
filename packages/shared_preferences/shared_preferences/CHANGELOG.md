@@ -1,6 +1,6 @@
 ## 2.1.3
 
-* Added handling of Date type objects on iOS in UserDefaults.
+* Added handling of Date type objects on iOS and macOS as timestamp value.
 
 ## 2.1.2
 
