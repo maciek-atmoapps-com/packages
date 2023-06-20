@@ -27,7 +27,9 @@ class RunnerTests: XCTestCase {
       
       // Native Date object.
       let exampleDate = Date.init()
+      let exampleDateTimestamp = Int(exampleDate.timeIntervalSince1970)
       UserDefaults.standard.set(exampleDate, forKey: "\(aPrefix)adate")
+      UserDefaults.standard.set([exampleDate,exampleDate], forKey: "\(aPrefix)aArrayDate")
 
       let storedValues = plugin.getAllWithPrefix(prefix: aPrefix)
       XCTAssertEqual(storedValues["\(aPrefix)aBool"] as? Bool, true)
@@ -35,7 +37,8 @@ class RunnerTests: XCTestCase {
       XCTAssertEqual(storedValues["\(aPrefix)anInt"] as? Int, 42)
       XCTAssertEqual(storedValues["\(aPrefix)aString"] as? String, "hello world")
       XCTAssertEqual(storedValues["\(aPrefix)aStringList"] as? Array<String>, ["hello", "world"])
-      XCTAssertEqual(storedValues["\(aPrefix)adate"] as? Int, Int(exampleDate.timeIntervalSince1970))
+      XCTAssertEqual(storedValues["\(aPrefix)adate"] as? Int, exampleDateTimestamp)
+      XCTAssertEqual(storedValues["\(aPrefix)aArrayDate"] as? Array<Int>, [exampleDateTimestamp,exampleDateTimestamp])
     }
   }
 
